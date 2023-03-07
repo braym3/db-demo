@@ -27,36 +27,60 @@ SELECT * FROM `orders`;
 
 USE `sakila`;
 
+-- Select all actors from the table
+
 SELECT * FROM `actor`;
+
+-- Find all actors with the first name 'John'
 
 SELECT * FROM `actor`
 WHERE `first_name` = 'John';
 
+-- Find all actors with the surname 'Neeson'
+
 SELECT * FROM `actor`
 WHERE `last_name` = 'Neeson';
 
-SELECT * FROM `actor`
-WHERE `actor_id` % 10 = 0;
+-- Find all actors with ID numbers divisible by 10
 
 SELECT * FROM `actor`
 WHERE `actor_id` % 10 = 0;
+
+-- What is description of the movie with ID of 100
 
 SELECT `description` FROM `film`
 WHERE `film_id` = 100;
 
+-- Find every movie with rating R
+
 SELECT `title`, `rating` FROM `film`
 WHERE `rating` = 'R';
+
+-- Find every movie except those rated R
 
 SELECT `title`, `rating` FROM `film`
 WHERE `rating` != 'R';
 
+-- Find the 10 shortest movies
+
 SELECT `title`, `length` FROM `film`
 ORDER BY `length` LIMIT 10;
 
+-- Now return only the movie titles
+
+SELECT `title` FROM `film`
+ORDER BY `length` LIMIT 10;
+
+-- Find all movies with deleted scenes
+
 SELECT `title`, `special_features` FROM `film`
-WHERE `special_features` IN ('Deleted Scenes');
+WHERE `special_features` LIKE '%Deleted Scenes%';
+
+-- How many distinct countries are there?
 
 SELECT COUNT(DISTINCT `country`) FROM `country`;
+
+-- What are all the languages in the database (alphabetically)
 
 SELECT `name` FROM `language`
 ORDER BY `name`;
