@@ -37,3 +37,12 @@ SELECT `category`.`name`, COUNT(`film_category`.`film_id`) AS `number_of_films`
 FROM `category`
 JOIN `film_category` ON `category`.`category_id` = `film_category`.`category_id`
 GROUP BY `category`.`category_id`;
+
+
+-- Create a list of actors and the number of movies by each actor
+SELECT CONCAT(`actor`.`first_name`, ' ', `actor`.`last_name`) AS `full_name`,
+	   COUNT(`film_actor`.`film_id`) AS `number_of_films`
+FROM `actor`
+JOIN `film_actor` ON `actor`.`actor_id` = `film_actor`.`actor_id`
+GROUP BY `actor`.`actor_id`
+ORDER BY `number_of_films` DESC;
