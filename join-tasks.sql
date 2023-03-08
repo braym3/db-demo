@@ -46,3 +46,11 @@ FROM `actor`
 JOIN `film_actor` ON `actor`.`actor_id` = `film_actor`.`actor_id`
 GROUP BY `actor`.`actor_id`
 ORDER BY `number_of_films` DESC;
+
+
+-- Is 'Academy Dinosaur' available to rent from Store 1?
+SELECT `film`.`title`, COUNT(`inventory`.`film_id`) AS `stock`
+FROM `film`
+JOIN `inventory` ON `film`.`film_id` = `inventory`.`film_id`
+WHERE `inventory`.`store_id` = 1 AND `film`.`title` = 'Academy Dinosaur'
+GROUP BY `film`.`film_id`;
