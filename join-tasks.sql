@@ -11,3 +11,10 @@ GROUP BY `category`.`category_id`;
 SELECT `last_name`, COUNT(`last_name`) AS `occurences` FROM `actor`
 GROUP BY `last_name`
 HAVING `occurences` > 1;
+
+
+-- Retrieve all movies that Fred Costner has appeared in
+SELECT `film`.`title` FROM `film`
+JOIN `film_actor` ON `film`.`film_id` = `film_actor`.`film_id`
+JOIN `actor` ON `film_actor`.`actor_id` = `actor`.`actor_id`
+WHERE `actor`.`first_name` = 'Fred' AND `actor`.`last_name` = 'Costner';
