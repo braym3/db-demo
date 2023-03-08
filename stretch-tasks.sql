@@ -25,3 +25,12 @@ JOIN `genres` ON `genres_movies`.`genre_id` = `genres`.`id`
 WHERE `genres`.`name` LIKE '%Sci-Fi%' AND `ratings`.`rating` = 5 AND `users`.`age` = 24 AND `occupations`.`name` LIKE '%student%'
 GROUP BY `movies`.`id`
 HAVING COUNT(`movies`.`id`) = 1;
+
+
+-- List the unique titles of each of the movies released on the most popular release day
+SELECT DISTINCT `movies`.`title`, `movies`.`release_date` FROM `movies`
+WHERE `movies`.`release_date` = (
+	SELECT `movies`.`release_date` FROM `movies`
+	GROUP BY `movies`.`release_date`
+	ORDER BY COUNT(`movies`.`id`) DESC LIMIT 1
+    );
