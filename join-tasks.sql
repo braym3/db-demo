@@ -30,3 +30,10 @@ JOIN `address` ON `store`.`address_id` = `address`.`address_id`
 GROUP BY `inventory`.`film_id`, `store`.`store_id`
 HAVING `film`.`title` = 'BUCKET BROTHERHOOD'
 ORDER BY `copies` DESC LIMIT 1;
+
+
+-- Create a list of categories and the number of films for each category
+SELECT `category`.`name`, COUNT(`film_category`.`film_id`) AS `number_of_films`
+FROM `category`
+JOIN `film_category` ON `category`.`category_id` = `film_category`.`category_id`
+GROUP BY `category`.`category_id`;
