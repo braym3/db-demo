@@ -54,3 +54,14 @@ FROM `film`
 JOIN `inventory` ON `film`.`film_id` = `inventory`.`film_id`
 WHERE `inventory`.`store_id` = 1 AND `film`.`title` = 'Academy Dinosaur'
 GROUP BY `film`.`film_id`;
+
+
+-- When is 'Academy Dinosaur' due?
+SELECT `film`.`title`, 
+	CONCAT(`customer`.`first_name`, ' ', `customer`.`last_name`) AS `customer_name`,
+    `rental`.`return_date`
+FROM `rental`
+JOIN `customer` ON `rental`.`customer_id` = `customer`.`customer_id`
+JOIN `inventory` ON `rental`.`inventory_id` = `inventory`.`inventory_id`
+JOIN `film` ON `inventory`.`film_id` = `film`.`film_id`
+WHERE `film`.`title` = 'Academy Dinosaur';
