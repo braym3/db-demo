@@ -5,15 +5,11 @@ SELECT `title`, `release_date` FROM `movies`
 WHERE `release_date` >= '1983-01-01' AND `release_date` < '1994-01-01'
 ORDER BY `release_date` DESC;
 
--- Without using LIMIT, list the titles of the movies with the lowest average rating
 
--- Find MIN rating 
--- Find all movies ids with that rating
--- Find all the movie titles for those movie IDs
-SELECT `title` FROM `movies`
-WHERE `id` = (
-	SELECT `movie_id` FROM `ratings`
-    WHERE `rating` = (
+
+-- Without using LIMIT, list the titles of the movies with the lowest average rating
+SELECT `movies`.`title`, `ratings`.`rating` FROM `movies`
+JOIN `ratings` ON `movies`.`id` = `ratings`.`movie_id`
+WHERE `rating` = (
 		SELECT MIN(`rating`) FROM `ratings`
-        )
-	);
+        );
