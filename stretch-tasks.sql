@@ -34,3 +34,10 @@ WHERE `movies`.`release_date` = (
 	GROUP BY `movies`.`release_date`
 	ORDER BY COUNT(`movies`.`id`) DESC LIMIT 1
     );
+
+
+-- Find the total number of movies in each genre; list the results in ascending numeric order
+SELECT `genres`.`name`, COUNT(`genres_movies`.`genre_id`) AS `number_of_movies` FROM `genres`
+JOIN `genres_movies` ON `genres`.`id` = `genres_movies`.`genre_id`
+GROUP BY `genres`.`id`
+ORDER BY `number_of_movies` ASC;
