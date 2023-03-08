@@ -28,4 +28,5 @@ JOIN `film` ON `inventory`.`film_id` = `film`.`film_id`
 JOIN `store` ON `inventory`.`store_id` = `store`.`store_id`
 JOIN `address` ON `store`.`address_id` = `address`.`address_id`
 GROUP BY `inventory`.`film_id`, `store`.`store_id`
-HAVING `film`.`title` = 'BUCKET BROTHERHOOD';
+HAVING `film`.`title` = 'BUCKET BROTHERHOOD'
+ORDER BY `copies` DESC LIMIT 1;
